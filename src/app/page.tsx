@@ -1,101 +1,62 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      <section className="card-soft p-8 shadow-soft">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600">
+          Womens AI Outfit
+        </p>
+        <h1 className="mt-3 text-3xl font-semibold text-violet-950 md:text-4xl">
+          专治女装网购尺码翻车
+        </h1>
+        <p className="mt-4 leading-relaxed text-stone-600">
+          记录你的身高体重与体型标签，使用{" "}
+          <span className="font-medium text-violet-800">
+            规则引擎做尺码推算 + AI 智能穿搭建议
+          </span>
+          ；虚拟试穿先用「上身示意图 +
+          关键标注」呈现版型适配度；AI 助手支持自然语言对话，可接入免费 API。
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Link
+            href="/profile"
+            className="rounded-2xl border border-violet-200 bg-white px-6 py-3 text-sm font-semibold text-violet-900 shadow-sm hover:bg-violet-50"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            我的身材数据
+          </Link>
+          <Link
+            href="/try-on"
+            className="rounded-2xl border border-violet-200 bg-white px-6 py-3 text-sm font-semibold text-violet-900 shadow-sm hover:bg-violet-50"
           >
-            Read our docs
-          </a>
+            虚拟试穿
+          </Link>
+          <Link
+            href="/wardrobe"
+            className="rounded-2xl border border-violet-200 bg-white px-6 py-3 text-sm font-semibold text-violet-900 shadow-sm hover:bg-violet-50"
+          >
+            智能衣橱筛选
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <aside className="card-soft flex flex-col gap-4 p-6 shadow-soft">
+        <h2 className="text-lg font-semibold text-violet-950">三分钟上手</h2>
+        <ol className="list-inside list-decimal space-y-3 text-sm leading-relaxed text-stone-600">
+          <li>
+            先在「我的身材」录入尺码与体型标签（梨形 / 苹果型 / 小个子等）。
+          </li>
+          <li>
+            「虚拟试穿」上传全身照与服装图；AI 智能分析适配度与尺码推荐。
+          </li>
+          <li>
+            「场景穿搭」按通勤 / 约会 / 校园等场景给出女装搭配与显瘦技巧。
+          </li>
+          <li>
+            「衣橱」支持按显瘦指数 / 版型 / 面料筛选，并可批量标注喜欢与否。
+          </li>
+        </ol>
+      </aside>
     </div>
   );
 }

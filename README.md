@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 女装专属 AI 穿搭 Demo（Next.js）
 
-## Getting Started
+基于思路参考 [fengjiabin43/ai-outfit-demo](https://github.com/fengjiabin43/ai-outfit-demo)（上游为 **Vite + React**），本项目为 **女装向**重写：**Next.js 14 App Router + Tailwind**，纯前端，`localStorage` 持久化，尺码/场景/试穿分析均走 **规则引擎**。
 
-First, run the development server:
+## 快速开始
 
 ```bash
+cd womens-ai-outfit-demo
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+浏览器打开 `http://localhost:3000`。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 功能一览
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 路由 | 说明 |
+|------|------|
+| `/` | 首页导航 |
+| `/profile` | 身材档案（体型多选、偏好、避雷面料/版型） |
+| `/try-on` | 虚拟试穿（可选外部 API；默认示意图 + 规则标注）、尺码表 JSON、试穿反馈 |
+| `/outfits` | 场景穿搭（通勤/约会/校园等），按体型排序 |
+| `/wardrobe` | 衣橱筛选 + 批量标注 |
 
-## Learn More
+## 可选：虚拟试穿 API
 
-To learn more about Next.js, take a look at the following resources:
+复制 `.env.example` 为 `.env.local`，填写 `NEXT_PUBLIC_VIRTUAL_TRYON_URL`。约定见 `src/lib/api/virtualTryOn.ts`。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+未配置时自动使用 **方案 A**：身形示意图 + 适配度 / 风险提示文案。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 构建
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build && npm start
+```
