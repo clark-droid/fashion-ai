@@ -8,12 +8,10 @@ import type {
   Silhouette,
   SizeRow,
   TryOnFeedback,
+  RiskTag,
 } from "@/lib/types";
 import { FABRIC_CN, SIL_CN } from "@/lib/labels";
-import { callVirtualTryOnApi } from "@/lib/api/virtualTryOn";
-import { generateTryOnImage, buildGarmentDescription, getBodyTypeDescription } from "@/lib/api/imageGeneration";
 import { generateTryOnImageWithDoubao, analyzeTryOnImageWithDoubao, fileToDataUrl } from "@/lib/api/doubaoSeedream";
-import { getAIConfig } from "@/lib/api/aiAssistant";
 
 // 从环境变量读取豆包 ARK API Key
 const DOUBAO_API_KEY = process.env.NEXT_PUBLIC_DOUBAO_ARK_API_KEY || "";
@@ -175,13 +173,15 @@ export default function TryOnPage() {
             // 更新分析结果
             setAnalysis({
               fitScore: aiAnalysis.fitScore || 75,
-              slimIndex: aiAnalysis.slimIndex || 3,
+              slimIndex: (Math.min(5, Math.max(1, aiAnalysis.slimIndex || 3)) as 1 | 2 | 3 | 4 | 5),
               waistPlacement: aiAnalysis.waistPlacement || "适中",
               hemFeel: aiAnalysis.hemFeel || "自然",
               hipVisual: aiAnalysis.hipVisual || "正常",
               shoulderVisual: aiAnalysis.shoulderVisual || "合适",
               annotations: aiAnalysis.annotations || [],
-              risks: aiAnalysis.risks || [],
+              risks: (aiAnalysis.risks || []).map((r: string | RiskTag) =>
+                typeof r === "string" ? { level: "warn" as const, text: r } : r
+              ),
             });
 
             setApiMsg(`已生成试穿效果图 | 适配分 ${aiAnalysis.fitScore} | ${aiAnalysis.overallComment || ""}`);
@@ -219,6 +219,7 @@ export default function TryOnPage() {
   }
 
   // 监听服装参数变化
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     updateAnalysis();
   }, [garment]);
